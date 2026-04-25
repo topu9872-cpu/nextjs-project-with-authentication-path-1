@@ -1,17 +1,28 @@
 import { getNewsDetailsid } from "@/lib/data";
+import { Description } from "@heroui/react";
 import Image from "next/image";
 import Link from "next/link";
 import { FaArrowLeft } from "react-icons/fa6";
 
+ export const generateMetadata = async({params})=>{
+  const { id } = await params;
+ const n = await getNewsDetailsid(id);
+ return{
+  title:n.title,
+  description:n.details
+ }
+};
+
+
 const NewsDetailsPage = async ({ params }) => {
   const { id } = await params;
 
-  console.log("ID:", id);
+ 
 
   const n = await getNewsDetailsid(id);
 
   if (!n) {
-    return <div>No news found</div>;
+    return <div className="flex justify-center items-center mx-auto text-4xl font-bold">No news found</div>;
   }
 
   return (
