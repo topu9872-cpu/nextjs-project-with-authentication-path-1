@@ -25,7 +25,7 @@ const NewsCard = ({ n }) => {
             </p>
           </li>
         </ul>
-        <div className="flex">
+        <div className="flex items-center">
           <CiBookmark />
           <CiShare2 />
         </div>
