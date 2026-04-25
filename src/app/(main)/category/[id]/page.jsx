@@ -1,22 +1,7 @@
 import LeftSideBar from "@/components/HomePage/news/LeftSideBar";
+import NewsCard from "@/components/HomePage/news/NewsCard";
 import RightSideBar from "@/components/HomePage/news/RightSideBar";
-
-const getCategories = async () => {
-  const res = await fetch(
-    "https://openapi.programming-hero.com/api/news/categories",
-  );
-  const data = await res.json();
-
-  return data.data.news_category;
-};
-const getNewsCategoryid = async (category_id) => {
-  const res = await fetch(
-    `https://openapi.programming-hero.com/api/news/category/${category_id}`,
-  );
-  const datas = await res.json();
-
-  return datas.data;
-};
+import { getCategories, getNewsCategoryid } from "@/lib/data";
 
 const NewsCategoryDetails = async ({ params }) => {
   const { id } = await params;
@@ -31,14 +16,13 @@ const NewsCategoryDetails = async ({ params }) => {
 
         <div className=" col-span-6">
           <h2 className=" font-bold text-xl text-center  ">
-            All News
+            News by Catefories
+                  </h2>
             <div className="space-y-4">
               {news.length > 0 ? (
                 news.map((n) => {
                   return (
-                    <div key={n._id} className="p-4 text-sm rounded-md border">
-                      {n.title}
-                    </div>
+                    <NewsCard key={n._id} n={n}/>
                   );
                 })
               ) : (
@@ -47,7 +31,7 @@ const NewsCategoryDetails = async ({ params }) => {
                 </div>
               )}
             </div>
-          </h2>
+    
         </div>
 
         <div className=" col-span-3">
