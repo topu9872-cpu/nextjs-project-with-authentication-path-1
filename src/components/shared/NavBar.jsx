@@ -7,7 +7,7 @@ import NavLink from "./NavLink";
 import { authClient } from "@/lib/auth-client";
 const NavBar = () => {
   const { data: session,isPending } = authClient.useSession();
-  console.log(session);
+
   const users = session?.user;
   
  
@@ -30,7 +30,7 @@ const NavBar = () => {
       <div className="flex gap-2">
        
         <h2>Hello, {users?.name}</h2>
-        <Image src={users.image || userAvatar} alt="User Avatar" width={40} height={40} className="rounded-full"/>
+        {/* <Image src={users.image || userAvatar} alt="User Avatar" width={40} height={40} className="rounded-full"/> */}
         
       <button className="btn btn-error" onClick={async()=>await authClient.signOut()} >
           <NavLink href={"/"}>Logout</NavLink>
